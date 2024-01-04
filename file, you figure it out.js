@@ -37,64 +37,9 @@ export class KeyManager {
         this.setKeyPressed(code, false)
       }, false);
 
-      document.addEventListener("mousedown", (event) => {
-        var rect = canvas.getBoundingClientRect()
-        this.mousePos = this.getMousePos(canvas, event);
-        this.mousePos.x = (((this.mousePos.x) / (rect.width)) * this.canvasShape.width) - this.camX
-        this.mousePos.y = (((this.mousePos.y) / (rect.height)) * this.canvasShape.height) - this.camY
-        if (event.button == 0 && !this.isKeyPressed("ShiftLeft")) {
-          if (this.game.menu.check) {
-            this.game.hook.visibility = !this.game.hook.visibility
-            this.game.hook.enabled = false
-            this.game.hook.motion = true
-            this.game.hook.mouseUpdate()
-            if (this.game.hook.visibility) {
-              this.game.audio.hookSound()
-            } else {
-              this.game.audio.breakSound()
-            }
-          }
-        }/*else if (event.button == 2 || this.isKeyPressed("ShiftLeft")) {
-          if (this.game.menu.check) {
-
-
-
-            this.game.sword.visibility = !this.game.sword.visibility
-            this.game.sword.enabled = false
-            this.game.sword.motion = true
-            this.game.sword.mouseUpdate()
-            
-
-            
-          }
-        }
-
-        /*
-        this.mouseX = (((event.clientX / 1.0) - this.canvasShape.left))
-        this.mouseY = (((event.clientY / 1.0) - this.canvasShape.top))
-        /*
-        this.x = event.clientX;
-        this.y = event.clientY;/**/
-      }, false);
       document.addEventListener('contextmenu', event => {
         event.preventDefault();
       }, false);      
-    }
-
-
-    mouseSetup() {
-      return {
-        x: 0,
-        y: 0
-    };
-    }
-
-     getMousePos(canvas, evt) {
-      var rect = canvas.getBoundingClientRect();
-      return {
-          x: evt.clientX - rect.left,
-          y: evt.clientY - rect.top
-      };
     }
 
     wasKeyJustPressed(code) {
